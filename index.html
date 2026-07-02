@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contagem Regressiva Vestibular</title>
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="container">
+
+    <h1>🎓 Meu Vestibular</h1>
+
+    <div class="formulario">
+
+        <label>Vestibular</label>
+        <input type="text" id="vestibular" placeholder="Ex: ENEM, FUVEST">
+
+        <label>Área de Interesse</label>
+        <input type="text" id="area" placeholder="Ex: Medicina">
+
+        <label>Nota de Corte</label>
+        <input type="number" id="nota" placeholder="Ex: 790">
+
+        <label>Data da Prova</label>
+        <input type="datetime-local" id="data">
+
+        <button onclick="salvar()">Salvar</button>
+
+    </div>
+
+    <div class="info">
+
+        <h2 id="tituloVestibular">Vestibular</h2>
+
+        <p id="curso">Área:</p>
+
+        <p id="notaCorte">Nota de Corte:</p>
+
+    </div>
+
+    <div class="contador">
+
+        <div class="tempo">
+            <span id="dias">0</span>
+            <small>Dias</small>
+        </div>
+
+        <div class="tempo">
+            <span id="horas">0</span>
+            <small>Horas</small>
+        </div>
+
+        <div class="tempo">
+            <span id="minutos">0</span>
+            <small>Minutos</small>
+        </div>
+
+        <div class="tempo">
+            <span id="segundos">0</span>
+            <small>Segundos</small>
+        </div>
+
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
