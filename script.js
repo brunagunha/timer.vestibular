@@ -1,76 +1,54 @@
-let dataProva;
+let dadosVestibulares = {};
+let intervalo;
 
-function iniciar(){
-
-const vestibular=document.getElementById("vestibular").value;
-
-const curso=document.getElementById("curso").value;
-
-dataProva=new Date(document.getElementById("data").value);
-
-if(!vestibular || !curso || isNaN(dataProva)){
-
-alert("Preencha todos os campos.");
-
-return;
-
+async function carregarDados() {
+    const resposta = await fetch("vestibulares.json");
+    dadosVestibulares = await resposta.json();
 }
 
-document.getElementById("nomeVestibular").innerHTML=vestibular;
+function iniciarPesquisa() {
+    const input = document.getElementById("vestibular").value.toLowerCase().trim();
 
-document.getElementById("nomeCurso").innerHTML="Curso: "+curso;
+    const resultado = dadosVestibulares[input];
 
-localStorage.setItem("vestibular",vestibular);
+    if (!resultado) {
+        alert("Vestibular não encontrado no banco de dados.");
+        return;
+    }
 
-localStorage.setItem("curso",curso);
+    document.getElementById("titulo").innerText = resultado.nome;
+    document.getElementById("descricao").innerText = resultado.descricao;
 
-localStorage.setItem("data",dataProva);
+    const dataProva = new Date(resultado.data);
 
+    if (intervalo) clearInterval(intervalo);
+
+    intervalo = setInterval(() => {
+        atualizarTimer(dataProva);
+    }, 1000);
 }
 
-function atualizar(){
+function atualizarTimer(dataProva) {
+    const agora = new Date();
+    const diferenca = dataProva - agora;
 
-const salva=localStorage.getItem("data");
+    if (diferenca <= 0) {
+        document.getElementById("dias").innerText = 0;
+        document.getElementById("horas").innerText = 0;
+        document.getElementById("minutos").innerText = 0;
+        document.getElementById("segundos").innerText = 0;
+        return;
+    }
 
-if(!salva)return;
+    const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
 
-dataProva=new Date(salva);
-
-document.getElementById("nomeVestibular").innerHTML=localStorage.getItem("vestibular");
-
-document.getElementById("nomeCurso").innerHTML="Curso: "+localStorage.getItem("curso");
-
-const agora=new Date();
-
-const diferenca=dataProva-agora;
-
-if(diferenca<=0){
-
-document.getElementById("dias").innerHTML=0;
-document.getElementById("horas").innerHTML=0;
-document.getElementById("minutos").innerHTML=0;
-document.getElementById("segundos").innerHTML=0;
-
-return;
-
+    document.getElementById("dias").innerText = dias;
+    document.getElementById("horas").innerText = horas;
+    document.getElementById("minutos").innerText = minutos;
+    document.getElementById("segundos").innerText = segundos;
 }
 
-const dias=Math.floor(diferenca/(1000*60*60*24));
-
-const horas=Math.floor((diferenca%(1000*60*60*24))/(1000*60*60));
-
-const minutos=Math.floor((diferenca%(1000*60*60))/(1000*60));
-
-const segundos=Math.floor((diferenca%(1000*60))/1000);
-
-document.getElementById("dias").innerHTML=dias;
-
-document.getElementById("horas").innerHTML=horas;
-
-document.getElementById("minutos").innerHTML=minutos;
-
-document.getElementById("segundos").innerHTML=segundos;
-
-}
-
-setInterval(atualizar,1000);
+carregarDados();

@@ -1,0 +1,38 @@
+{
+  "enem": {
+    "nome": "ENEM 2026",
+    "data": "2026-11-08T13:30:00",
+    "descricao": "Exame Nacional do Ensino Médio",
+    "site": "https://www.gov.br/inep/pt-br"
+  },
+  "fuvest": {
+    "nome": "FUVEST 2026",
+    "data": "2026-11-22T13:00:00",
+    "descricao": "Vestibular da USP",
+    "site": "https://www.fuvest.br"
+  },
+  "unicamp": {
+    "nome": "UNICAMP 2026",
+    "data": "2026-10-25T13:00:00",
+    "descricao": "Vestibular da UNICAMP",
+    "site": "https://www.comvest.unicamp.br"
+  },
+  "unesp": {
+    "nome": "UNESP 2026",
+    "data": "2026-11-10T13:00:00",
+    "descricao": "Vestibular da UNESP",
+    "site": "https://www.vunesp.com.br"
+  },
+  "ufpr": {
+    "nome": "UFPR 2026",
+    "data": "2026-12-01T13:00:00",
+    "descricao": "Vestibular da UFPR",
+    "site": "https://www.nc.ufpr.br"
+  },
+  "ita": {
+    "nome": "ITA 2026",
+    "data": "2026-12-05T13:00:00",
+    "descricao": "Instituto Tecnológico de Aeronáutica",
+    "site": "https://www.ita.br"
+  }
+}
