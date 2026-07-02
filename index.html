@@ -1,73 +1,90 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
+
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>Contagem Regressiva Vestibular</title>
 
 <link rel="stylesheet" href="style.css">
+
 </head>
+
 <body>
 
 <div class="container">
 
-    <h1>🎓 Meu Vestibular</h1>
+<h1>🎓 Contagem Regressiva</h1>
 
-    <div class="formulario">
+<div class="card">
 
-        <label>Vestibular</label>
-        <input type="text" id="vestibular" placeholder="Ex: ENEM, FUVEST">
+<label>Vestibular</label>
 
-        <label>Área de Interesse</label>
-        <input type="text" id="area" placeholder="Ex: Medicina">
+<input
+type="text"
+id="vestibular"
+placeholder="Ex: ENEM">
 
-        <label>Nota de Corte</label>
-        <input type="number" id="nota" placeholder="Ex: 790">
+<label>Curso de Interesse</label>
 
-        <label>Data da Prova</label>
-        <input type="datetime-local" id="data">
+<input
+type="text"
+id="curso"
+placeholder="Ex: Medicina">
 
-        <button onclick="salvar()">Salvar</button>
+<label>Data da Prova</label>
 
-    </div>
+<input
+type="datetime-local"
+id="data">
 
-    <div class="info">
+<button onclick="iniciar()">
 
-        <h2 id="tituloVestibular">Vestibular</h2>
+Pesquisar
 
-        <p id="curso">Área:</p>
+</button>
 
-        <p id="notaCorte">Nota de Corte:</p>
+</div>
 
-    </div>
+<div class="resultado">
 
-    <div class="contador">
+<h2 id="nomeVestibular">Nenhum vestibular selecionado</h2>
 
-        <div class="tempo">
-            <span id="dias">0</span>
-            <small>Dias</small>
-        </div>
+<p id="nomeCurso"></p>
 
-        <div class="tempo">
-            <span id="horas">0</span>
-            <small>Horas</small>
-        </div>
+</div>
 
-        <div class="tempo">
-            <span id="minutos">0</span>
-            <small>Minutos</small>
-        </div>
+<div class="contador">
 
-        <div class="tempo">
-            <span id="segundos">0</span>
-            <small>Segundos</small>
-        </div>
+<div class="box">
+<span id="dias">0</span>
+<p>Dias</p>
+</div>
 
-    </div>
+<div class="box">
+<span id="horas">0</span>
+<p>Horas</p>
+</div>
+
+<div class="box">
+<span id="minutos">0</span>
+<p>Minutos</p>
+</div>
+
+<div class="box">
+<span id="segundos">0</span>
+<p>Segundos</p>
+</div>
+
+</div>
 
 </div>
 
 <script src="script.js"></script>
 
 </body>
+
 </html>
