@@ -1,112 +1,66 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Vestibular Timer</title>
-
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      text-align: center;
-      padding: 40px;
-    }
-
-    .container {
-      max-width: 700px;
-      margin: auto;
-      background: rgba(255,255,255,0.1);
-      padding: 30px;
-      border-radius: 15px;
-      backdrop-filter: blur(10px);
-    }
-
-    input {
-      padding: 12px;
-      width: 60%;
-      border-radius: 8px;
-      border: none;
-      margin-top: 10px;
-    }
-
-    button {
-      padding: 12px 20px;
-      margin-top: 10px;
-      border: none;
-      border-radius: 8px;
-      background: #00c853;
-      color: white;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #00b248;
-    }
-
-    .timer {
-      display: flex;
-      justify-content: space-around;
-      margin-top: 30px;
-    }
-
-    .box {
-      background: rgba(255,255,255,0.15);
-      padding: 20px;
-      border-radius: 10px;
-      width: 100px;
-    }
-
-    .box span {
-      font-size: 32px;
-      display: block;
-      margin-bottom: 5px;
-    }
-
-    h1 {
-      margin-bottom: 10px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva para o Vestibular</title>
+    <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-  <div class="container">
+    <div class="container">
+        <h1>Foco no Objetivo 🎯</h1>
+        <p class="subtitle">Insira o vestibular dos seus sonhos e gerencie seu tempo de estudos.</p>
 
-    <h1 id="titulo">🎓 Vestibular Timer</h1>
-    <p id="descricao">Pesquise um vestibular para começar</p>
+        <div class="search-box">
+            <input type="text" id="vestibular-input" placeholder="Digite o nome do vestibular (ex: FUVEST)...">
+            <button id="btn-atualizar">Definir Alvo</button>
+        </div>
 
-    <input type="text" id="vestibular" placeholder="Ex: enem, fuvest, unicamp">
-    <br>
-    <button onclick="iniciarPesquisa()">Pesquisar</button>
+        <h2 id="nome-vestibular">Contagem Regressiva: ENEM 2026</h2>
 
-    <div class="timer">
-      <div class="box">
-        <span id="dias">0</span>
-        Dias
-      </div>
+        <div class="countdown-container">
+            <div class="time-box">
+                <span id="meses">00</span>
+                <p>Meses</p>
+            </div>
+            <div class="time-box">
+                <span id="dias">00</span>
+                <p>Dias</p>
+            </div>
+            <div class="time-box">
+                <span id="horas">00</span>
+                <p>Horas</p>
+            </div>
+            <div class="time-box">
+                <span id="minutos">00</span>
+                <p>Minutos</p>
+            </div>
+            <div class="time-box">
+                <span id="segundos">00</span>
+                <p>Segundos</p>
+            </div>
+        </div>
 
-      <div class="box">
-        <span id="horas">0</span>
-        Horas
-      </div>
-
-      <div class="box">
-        <span id="minutos">0</span>
-        Minutos
-      </div>
-
-      <div class="box">
-        <span id="segundos">0</span>
-        Segundos
-      </div>
+        <div class="info-card">
+            <h3>📌 Informações Gerais (Baseadas no Edital)</h3>
+            <div class="info-grid">
+                <div class="info-item">
+                    <strong>Estrutura da Prova:</strong>
+                    <span id="info-estrutura">90 questões por dia + Redação (Total de 180 questões).</span>
+                </div>
+                <div class="info-item">
+                    <strong>Matérias Principais:</strong>
+                    <span id="info-materias">Linguagens, Ciências Humanas, Ciências da Natureza e Matemática.</span>
+                </div>
+                <div class="info-item">
+                    <strong>Dica de Ouro:</strong>
+                    <span id="info-dica">Organize seu cronograma priorizando a TRI (Teoria de Resposta ao Item) e faça provas anteriores!</span>
+                </div>
+            </div>
+        </div>
     </div>
 
-  </div>
-
-  <script src="script.js"></script>
-
+    <script src="script.js"></script>
 </body>
 </html>
