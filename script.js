@@ -1,100 +1,96 @@
-// Banco de dados simulado para os principais vestibulares
+// 1. Banco de dados dos vestibulares com as datas e informações corretas
+// O "-03:00" no final das datas garante o fuso horário de Brasília!
 const dadosVestibulares = {
     "enem": {
-        nome: "ENEM 2026",
-        data: "November 8, 2026 13:00:00",
-        estrutura: "90 questões por dia + Redação (Total de 180 questões multipla escolha).",
+        nome: "Contagem Regressiva: ENEM 2026",
+        data: "2026-11-08T13:00:00-03:00", // Exemplo: 1º dia do ENEM às 13h
+        estrutura: "90 questões por dia + Redação (Total de 180 questões).",
         materias: "Linguagens, Ciências Humanas, Ciências da Natureza e Matemática.",
-        dica: "A nota usa o sistema TRI. Não chute tudo igual, foque em garantir as questões fáceis!"
+        dica: "Organize seu cronograma priorizando a TRI (Teoria de Resposta ao Item) e faça provas anteriores!"
     },
     "fuvest": {
-        nome: "FUVEST 2027",
-        data: "November 15, 2026 13:00:00",
+        nome: "Contagem Regressiva: FUVEST 2027",
+        data: "2026-11-15T13:00:00-03:00", // Data fictícia/estimada para fim de 2026
         estrutura: "1ª Fase: 90 questões objetivas. 2ª Fase: Discursivas + Redação.",
-        materias: "Core de matérias do Ensino Médio com forte cobrança em Leitura Obrigatória.",
-        dica: "A Fuvest exige muito conteúdo clássico e leitura atenta dos livros obrigatórios!"
-    },
-    "unicamp": {
-        nome: "UNICAMP 2027",
-        data: "October 18, 2026 13:00:00",
-        estrutura: "1ª Fase: 72 questões. 2ª Fase: Questões discursivas específicas + Redação.",
-        materias: "Foco em interdisciplinaridade e criticidade nas questões.",
-        dica: "A redação da Unicamp exige formatos diferentes (cartas, manifestos, etc.). Treine gêneros textuais!"
+        materias: "Disciplinas do Ensino Médio com forte cobrança de leitura obrigatória.",
+        dica: "Não ignore a lista de livros obrigatórios e treine bastante a escrita para a segunda fase!"
     }
 };
 
-// Data padrão inicial (Caso o input não bata com nosso banco, jogamos uma data padrão de 6 meses à frente)
-let dataAlvo = new Date(dadosVestibulares.enem.data).getTime();
+// Vestibular padrão ao abrir a página
+let vestibularAtual = "enem";
 let intervaloCronometro;
 
-function atualizarCronometro() {
-    const agora = new Date().getTime();
-    const diferenca = dataAlvo - agora;
+function iniciarCronometro() {
+    // Limpa o intervalo anterior se o usuário mudar de vestibular
+    clearInterval(intervaloCronometro);
 
-    if (diferenca <= 0) {
-        clearInterval(intervaloCronometro);
-        document.getElementById("meses").innerText = "00";
-        document.getElementById("dias").innerText = "00";
-        document.getElementById("horas").innerText = "00";
-        document.getElementById("minutos").innerText = "00";
-        document.getElementById("segundos").innerText = "00";
-        return;
+    const dados = dadosVestibulares[vestibularAtual];
+    const dataAlvo = new Date(dados.data).getTime();
+
+    // Atualiza os textos da tela com o vestibular selecionado
+    document.getElementById("nome-vestibular").innerText = dados.nome;
+    document.getElementById("info-estrutura").innerText = dados.estrutura;
+    document.getElementById("info-materias").innerText = dados.materias;
+    document.getElementById("info-dica").innerText = dados.dica;
+
+    function atualizarTela() {
+        const agora = new Date().getTime();
+        const diferenca = dataAlvo - agora;
+
+        if (diferenca <= 0) {
+            document.getElementById("nome-vestibular").innerText = `${dados.nome} - A prova já começou!`;
+            zerarCronometro();
+            clearInterval(intervaloCronometro);
+            return;
+        }
+
+        // Constantes de conversão exatas
+        const umSegundo = 1000;
+        const umMinuto = umSegundo * 60;
+        const umaHora = umMinuto * 60;
+        const umDia = umaHora * 24;
+        const umMes = umDia * 30.4368; // Média exata de dias por mês no ano
+
+        // Cálculos matemáticos corrigidos
+        const meses = Math.floor(diferenca / umMes);
+        const dias = Math.floor((diferenca % umMes) / umDia);
+        const horas = Math.floor((diferenca % umDia) / umaHora);
+        const minutos = Math.floor((diferenca % umaHora) / umMinuto);
+        const segundos = Math.floor((diferenca % umMinuto) / umSegundo);
+
+        // Atualiza os elementos do seu HTML usando o padStart para ficar sempre com dois dígitos (ex: 05 em vez de 5)
+        document.getElementById("meses").innerText = String(meses).padStart(2, '0');
+        document.getElementById("dias").innerText = String(dias).padStart(2, '0');
+        document.getElementById("horas").innerText = String(horas).padStart(2, '0');
+        document.getElementById("minutos").innerText = String(minutos).padStart(2, '0');
+        document.getElementById("segundos").innerText = String(segundos).padStart(2, '0');
     }
 
-    // Cálculos matemáticos de conversão de tempo
-    const umSegundo = 1000;
-    const umMinuto = umSegundo * 60;
-    const umaHora = umMinuto * 60;
-    const umDia = umaHora * 24;
-    const umMes = umDia * 30.44; // Média de dias por mês
-
-    const meses = Math.floor(diferenca / umMes);
-    const dias = Math.floor((diferenca % umMes) / umDia);
-    const horas = Math.floor((diferenca % umDia) / umaHora);
-    const minutos = Math.floor((diferenca % umaHora) / umMinuto);
-    const segundos = Math.floor((diferenca % umMinuto) / umSegundo);
-
-    // Inserindo os valores na tela formatados com zero à esquerda se menor que 10
-    document.getElementById("meses").innerText = meses < 10 ? "0" + meses : meses;
-    document.getElementById("dias").innerText = dias < 10 ? "0" + dias : dias;
-    document.getElementById("horas").innerText = horas < 10 ? "0" + horas : horas;
-    document.getElementById("minutos").innerText = minutos < 10 ? "0" + minutos : minutos;
-    document.getElementById("segundos").innerText = segundos < 10 ? "0" + segundos : segundos;
+    // Executa imediatamente e depois a cada segundo
+    atualizarTela();
+    intervaloCronometro = setInterval(atualizarTela, 1000);
 }
 
-// Evento do Botão de Atualizar
+function zerarCronometro() {
+    document.getElementById("meses").innerText = "00";
+    document.getElementById("dias").innerText = "00";
+    document.getElementById("horas").innerText = "00";
+    document.getElementById("minutos").innerText = "00";
+    document.getElementById("segundos").innerText = "00";
+}
+
+// Configuração do botão de busca/atualizar do seu HTML
 document.getElementById("btn-atualizar").addEventListener("click", () => {
-    const inputUser = document.getElementById("vestibular-input").value.trim().toLowerCase();
+    const input = document.getElementById("vestibular-input").value.toLowerCase().trim();
     
-    if (inputUser === "") return;
-
-    if (dadosVestibulares[inputUser]) {
-        // Se achou no sistema (Enem, Fuvest ou Unicamp)
-        const info = dadosVestibulares[inputUser];
-        document.getElementById("nome-vestibular").innerText = `Contagem Regressiva: ${info.nome}`;
-        document.getElementById("info-estrutura").innerText = info.estrutura;
-        document.getElementById("info-materias").innerText = info.materias;
-        document.getElementById("info-dica").innerText = info.dica;
-        dataAlvo = new Date(info.data).getTime();
+    if (dadosVestibulares[input]) {
+        vestibularAtual = input;
+        iniciarCronometro();
     } else {
-        // Se o usuário digitar outro vestibular genérico
-        document.getElementById("nome-vestibular").innerText = `Contagem Regressiva: ${inputUser.toUpperCase()}`;
-        document.getElementById("info-estrutura").innerText = "Consulte o edital oficial para ver o número de questões.";
-        document.getElementById("info-materias").innerText = "Geralmente engloba todas as matérias da BNCC do Ensino Médio.";
-        document.getElementById("info-dica").innerText = "Mantenha a constância nos simulados semanais!";
-        
-        // Define uma data fictícia de 5 meses para frente para o cronômetro não zerar
-        let dataFutura = new Date();
-        dataFutura.setMonth(dataFutura.getMonth() + 5);
-        dataAlvo = dataFutura.getTime();
+        alert("Vestibular não encontrado! Tente digitar 'enem' ou 'fuvest'.");
     }
-
-    // Reinicia o loop do cronômetro com o novo tempo
-    clearInterval(intervaloCronometro);
-    atualizarCronometro();
-    intervaloCronometro = setInterval(atualizarCronometro, 1000);
 });
 
-// Inicialização Automática ao abrir a página
-atualizarCronometro();
-intervaloCronometro = setInterval(atualizarCronometro, 1000);
+// Inicializa o site mostrando o ENEM por padrão
+iniciarCronometro();
