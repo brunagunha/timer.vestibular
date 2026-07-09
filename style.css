@@ -36,7 +36,7 @@ body::before {
     /* 👉 LEIA AQUI: Substitua 'nome-da-sua-imagem.jpg' pelo nome do seu arquivo de imagem 
        ou por uma URL da internet (ex: 'https://site.com/imagem.jpg') 
     */
-    background-image: url('livros-fundo.jpg'); 
+    background-image: url('livros-fundo.jpeg'); 
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
