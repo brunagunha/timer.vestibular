@@ -1,115 +1,150 @@
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --accent-color: #3b82f6;
+    --text-color: #f8fafc;
+    --text-secondary: #94a3b8;
+}
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  background: linear-gradient(135deg, #141e30, #243b55);
-  color: white;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
 }
 
 .container {
-  width: 90%;
-  max-width: 750px;
-
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(12px);
-
-  border-radius: 20px;
-  padding: 40px;
-
-  text-align: center;
-
-  box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    max-width: 800px;
+    width: 100%;
+    text-align: center;
+    background: var(--card-bg);
+    padding: 40px 20px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
-  margin-bottom: 10px;
-  font-size: 28px;
+    font-size: 2.5rem;
+    margin-bottom: 10px;
 }
 
-#descricao {
-  margin-bottom: 20px;
-  opacity: 0.8;
+.subtitle {
+    color: var(--text-secondary);
+    margin-bottom: 30px;
+}
+
+/* Caixa de Busca */
+.search-box {
+    display: flex;
+    gap: 10px;
+    max-width: 500px;
+    margin: 0 auto 40px auto;
 }
 
 input {
-  width: 70%;
-  padding: 14px;
+    flex: 1;
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 2px solid #334155;
+    background: #0f172a;
+    color: white;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.3s;
+}
 
-  border: none;
-  border-radius: 10px;
-
-  font-size: 16px;
-
-  outline: none;
-  margin-top: 10px;
+input:focus {
+    border-color: var(--accent-color);
 }
 
 button {
-  margin-top: 15px;
-
-  padding: 14px 20px;
-
-  border: none;
-  border-radius: 10px;
-
-  background: #00c853;
-  color: white;
-
-  font-size: 16px;
-
-  cursor: pointer;
-
-  transition: 0.3s;
+    padding: 12px 24px;
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
 button:hover {
-  background: #00b248;
-  transform: scale(1.05);
+    background: #2563eb;
+    transform: translateY(-2px);
 }
 
-.timer {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 15px;
-
-  margin-top: 30px;
+h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #60a5fa;
 }
 
-.box {
-  background: rgba(255, 255, 255, 0.12);
-  padding: 20px;
-
-  border-radius: 15px;
-
-  transition: 0.3s;
+/* Grid do Cronômetro */
+.countdown-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 15px;
+    margin-bottom: 40px;
 }
 
-.box:hover {
-  transform: translateY(-5px);
-  background: rgba(255, 255, 255, 0.18);
+.time-box {
+    background: #0f172a;
+    padding: 20px 10px;
+    border-radius: 12px;
+    border: 1px solid #334155;
 }
 
-.box span {
-  font-size: 40px;
-  font-weight: bold;
-  display: block;
+.time-box span {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #f59e0b;
+    display: block;
 }
 
-@media (max-width: 600px) {
-  .timer {
-    grid-template-columns: repeat(2, 1fr);
-  }
+.time-box p {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    margin-top: 5px;
+}
 
-  input {
-    width: 100%;
-  }
+/* Card de Informações */
+.info-card {
+    background: #0f172a;
+    border-left: 4px solid var(--accent-color);
+    padding: 20px;
+    border-radius: 0 12px 12px 0;
+    text-align: left;
+}
+
+.info-card h3 {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+}
+
+.info-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.info-item strong {
+    color: #38bdf8;
+    display: block;
+    margin-bottom: 2px;
+}
+
+.info-item span {
+    color: #cbd5e1;
+    font-size: 0.95rem;
 }
