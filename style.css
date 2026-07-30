@@ -35,7 +35,7 @@ body {
     border-radius: 24px;
     padding: 40px 35px;
     width: 100%;
-    max-width: 550px;
+    max-width: 600px;
     text-align: center;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4),
                 inset 0 1px 0 rgba(255, 255, 255, 0.1);
@@ -48,7 +48,7 @@ body {
 }
 
 h1 {
-    font-size: 2.4rem;
+    font-size: 2.2rem;
     font-weight: 700;
     margin-bottom: 8px;
     color: #ffffff;
@@ -58,11 +58,11 @@ h1 {
 .subtitle {
     color: var(--text-secondary);
     font-size: 0.95rem;
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 }
 
 .selector-wrapper {
-    margin-bottom: 35px;
+    margin-bottom: 25px;
     text-align: left;
     display: flex;
     flex-direction: column;
@@ -101,13 +101,13 @@ select:focus {
 
 .timer-display {
     background: rgba(9, 13, 22, 0.6);
-    padding: 30px 25px;
+    padding: 25px;
     border-radius: 20px;
     border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 #vestibular-title {
-    font-size: 1.6rem;
+    font-size: 1.5rem;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -118,12 +118,37 @@ select:focus {
     font-size: 0.9rem;
     color: var(--text-secondary);
     margin-top: 6px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 #exam-date-text {
     color: var(--accent-blue);
     font-weight: 600;
+}
+
+/* Novos estilos para as informações */
+.exam-info {
+    text-align: left;
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(9, 13, 22, 0.4);
+    padding: 15px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.info-item {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.4;
+}
+
+.info-item strong {
+    color: var(--accent-blue);
+    display: inline-block;
+    margin-right: 4px;
 }
 
 .countdown-container {
@@ -180,7 +205,7 @@ select:focus {
 #finished-message {
     color: #f43f5e;
     font-weight: 600;
-    margin-top: 25px;
+    margin-top: 20px;
     font-size: 0.95rem;
     padding: 10px;
     background: rgba(244, 63, 94, 0.1);
@@ -194,11 +219,11 @@ select:focus {
 
 @media (max-width: 480px) {
     .container {
-        padding: 30px 20px;
+        padding: 25px 15px;
     }
     
     h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
     }
 
     .countdown-container {
