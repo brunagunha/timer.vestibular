@@ -1,4 +1,4 @@
-/* Configurações Globais e Estética Clean */
+
 * {
     margin: 0;
     padding: 0;
@@ -40,7 +40,7 @@ h1 {
     margin-bottom: 30px;
 }
 
-/* Customização do Menu de Seleção */
+
 .selector-wrapper {
     margin-bottom: 30px;
     text-align: left;
@@ -72,7 +72,7 @@ select:focus {
     border-color: #38bdf8;
 }
 
-/* Painel de Exibição do Temporizador */
+
 .timer-display {
     background: #0f172a;
     padding: 25px;
@@ -95,7 +95,7 @@ select:focus {
     font-weight: 500;
 }
 
-/* Boxes dos Números */
+
 .countdown-container {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
@@ -125,7 +125,7 @@ select:focus {
     letter-spacing: 0.5px;
 }
 
-/* Mensagem de Término */
+
 #finished-message {
     color: #f43f5e;
     font-weight: bold;
@@ -136,7 +136,7 @@ select:focus {
     display: none;
 }
 
-/* Responsividade para Telas Menores */
+
 @media (max-width: 480px) {
     .countdown-container {
         grid-template-columns: repeat(2, 1fr);
