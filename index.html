@@ -3,61 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contagem Regressiva para o Vestibular</title>
+    <title>Contagem Regressiva - Vestibulares</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
-        <h1>Foco no Objetivo 🎯</h1>
-        <p class="subtitle">Insira o vestibular dos seus sonhos e gerencie seu tempo de estudos.</p>
+        <h1>⏰ Foco na Vaga!</h1>
+        <p class="subtitle">Selecione o vestibular para ver o tempo restante até a prova.</p>
 
-        <div class="search-box">
-            <input type="text" id="vestibular-input" placeholder="Digite o nome do vestibular (ex: FUVEST)...">
-            <button id="btn-atualizar">Definir Alvo</button>
+        <!-- Seletor de Vestibulares -->
+        <div class="selector-wrapper">
+            <label for="vestibular-select">Escolha o Vestibular:</label>
+            <select id="vestibular-select">
+                <option value="enem">ENEM (1º Dia)</option>
+                <option value="fuvest">FUVEST (1ª Fase)</option>
+                <option value="ufpr">UFPR</option>
+                <option value="uel">UEL</option>
+                <option value="uem">UEM (Verão)</option>
+                <option value="uepg">UEPG</option>
+                <option value="unicentro">UNICENTRO</option>
+                <option value="unioeste">UNIOESTE</option>
+                <option value="utfpr">UTFPR</option>
+                <option value="puc">PUC-PR</option>
+            </select>
         </div>
 
-        <h2 id="nome-vestibular">Contagem Regressiva: ENEM 2026</h2>
-
-        <div class="countdown-container">
-            <div class="time-box">
-                <span id="meses">00</span>
-                <p>Meses</p>
-            </div>
-            <div class="time-box">
-                <span id="dias">00</span>
-                <p>Dias</p>
-            </div>
-            <div class="time-box">
-                <span id="horas">00</span>
-                <p>Horas</p>
-            </div>
-            <div class="time-box">
-                <span id="minutos">00</span>
-                <p>Minutos</p>
-            </div>
-            <div class="time-box">
-                <span id="segundos">00</span>
-                <p>Segundos</p>
-            </div>
-        </div>
-
-        <div class="info-card">
-            <h3>📌 Informações Gerais (Baseadas no Edital)</h3>
-            <div class="info-grid">
-                <div class="info-item">
-                    <strong>Estrutura da Prova:</strong>
-                    <span id="info-estrutura">90 questões por dia + Redação (Total de 180 questões).</span>
+        <!-- Painel do Cronômetro -->
+        <div class="timer-display">
+            <h2 id="vestibular-title">ENEM</h2>
+            <p class="exam-date">Data da Prova: <span id="exam-date-text">--/--/----</span></p>
+            
+            <div class="countdown-container">
+                <div class="time-box">
+                    <span id="days">00</span>
+                    <p>Dias</p>
                 </div>
-                <div class="info-item">
-                    <strong>Matérias Principais:</strong>
-                    <span id="info-materias">Linguagens, Ciências Humanas, Ciências da Natureza e Matemática.</span>
+                <div class="time-box">
+                    <span id="hours">00</span>
+                    <p>Horas</p>
                 </div>
-                <div class="info-item">
-                    <strong>Dica de Ouro:</strong>
-                    <span id="info-dica">Organize seu cronograma priorizando a TRI (Teoria de Resposta ao Item) e faça provas anteriores!</span>
+                <div class="time-box">
+                    <span id="minutes">00</span>
+                    <p>Minutos</p>
+                </div>
+                <div class="time-box">
+                    <span id="seconds">00</span>
+                    <p>Segundos</p>
                 </div>
             </div>
+            <p id="finished-message" class="finished-hidden">🎉 A prova começou ou já aconteceu!</p>
         </div>
     </div>
 
