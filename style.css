@@ -6,7 +6,6 @@
 }
 
 :root {
-    --bg-gradient: linear-gradient(135deg, #3C1A7D, #87007D);
     --card-bg: rgba(15, 23, 42, 0.45);
     --border-color: rgba(255, 255, 255, 0.08);
     --text-primary: #f8fafc;
@@ -17,7 +16,14 @@
 }
 
 body {
-    background: var(--bg-gradient);
+body {
+    background: linear-gradient(135deg, rgba(60, 26, 125, 0.85), rgba(135, 0, 125, 0.85)), 
+                url('https://as2.ftcdn.net/v2/jpg/07/12/28/35/1000_F_712283527_KL1b4lHs9xtdg9p3dbVgrLJ4FXdqZF3x.jpg');
+    
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
     color: var(--text-primary);
     min-height: 100vh;
     display: flex;
@@ -25,6 +31,7 @@ body {
     align-items: center;
     padding: 20px;
     overflow-x: hidden;
+}
 }
 
 .container {
