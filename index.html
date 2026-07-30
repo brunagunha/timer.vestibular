@@ -4,16 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contagem Regressiva - Vestibulares</title>
-    <link rel="preconnect" href="https://googleapis.com">
-    <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
         <h1>Fique Ligado nos Principais Vestibulares! </h1>
-        <p class="subtitle">Selecione o vestibular para ver o tempo restante até a prova.</p>
+        <p class="subtitle">Selecione o vestibular para ver os detalhes e o tempo restante até a prova.</p>
             
         <div class="selector-wrapper">
             <label for="vestibular-select">Escolha o Vestibular:</label>
@@ -37,6 +37,13 @@
             <h2 id="vestibular-title">ENEM</h2>
             <p class="exam-date">Data da Prova: <span id="exam-date-text">--/--/----</span></p>
             
+            <!-- Bloco de Informações Adicionais -->
+            <div class="exam-info">
+                <div class="info-item"><strong>Questões:</strong> <span id="info-questoes">--</span></div>
+                <div class="info-item"><strong>Redação:</strong> <span id="info-redacao">--</span></div>
+                <div class="info-item"><strong>Matérias:</strong> <span id="info-materias">--</span></div>
+            </div>
+
             <div class="countdown-container">
                 <div class="time-box">
                     <span id="days">00</span>
