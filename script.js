@@ -1,96 +1,78 @@
-// 1. Banco de dados dos vestibulares com as datas e informações corretas
-// O "-03:00" no final das datas garante o fuso horário de Brasília!
-const dadosVestibulares = {
-    "enem": {
-        nome: "Contagem Regressiva: ENEM 2026",
-        data: "2026-11-08T13:00:00-03:00", // Exemplo: 1º dia do ENEM às 13h
-        estrutura: "90 questões por dia + Redação (Total de 180 questões).",
-        materias: "Linguagens, Ciências Humanas, Ciências da Natureza e Matemática.",
-        dica: "Organize seu cronograma priorizando a TRI (Teoria de Resposta ao Item) e faça provas anteriores!"
-    },
-    "fuvest": {
-        nome: "Contagem Regressiva: FUVEST 2027",
-        data: "2026-11-15T13:00:00-03:00", // Data fictícia/estimada para fim de 2026
-        estrutura: "1ª Fase: 90 questões objetivas. 2ª Fase: Discursivas + Redação.",
-        materias: "Disciplinas do Ensino Médio com forte cobrança de leitura obrigatória.",
-        dica: "Não ignore a lista de livros obrigatórios e treine bastante a escrita para a segunda fase!"
-    }
+// Banco de dados com as datas oficiais dos vestibulares (Formato: AAAA-MM-DDTHH:MM:SS)
+const vestibulares = {
+    enem: { name: "ENEM - 1º Domingo", date: "2026-11-08T13:00:00", formatted: "08/11/2026" },
+    fuvest: { name: "FUVEST - 1ª Fase", date: "2026-11-01T13:00:00", formatted: "01/11/2026" },
+    ufpr: { name: "UFPR - Fase Única", date: "2026-11-01T14:00:00", formatted: "01/11/2026" },
+    uel: { name: "UEL", date: "2026-10-18T14:00:00", formatted: "18/10/2026" },
+    uem: { name: "UEM - Verão", date: "2026-12-06T13:50:00", formatted: "06/12/2026" },
+    uepg: { name: "UEPG", date: "2026-12-13T13:30:00", formatted: "13/12/2026" },
+    unicentro: { name: "UNICENTRO", date: "2026-09-21T14:00:00", formatted: "21/09/2026" },
+    unioeste: { name: "UNIOESTE", date: "2026-11-29T14:00:00", formatted: "29/11/2026" }, // Data padrão estimada/histórica
+    utfpr: { name: "UTFPR", date: "2026-11-22T14:00:00", formatted: "22/11/2026" }, // Janela estimada conforme edital preliminar
+    puc: { name: "PUC-PR", date: "2026-10-11T13:00:00", formatted: "10/11/2026" }
 };
 
-// Vestibular padrão ao abrir a página
-let vestibularAtual = "enem";
-let intervaloCronometro;
+// Seleção dos elementos do DOM
+const selectElement = document.getElementById("vestibular-select");
+const titleElement = document.getElementById("vestibular-title");
+const dateTextElement = document.getElementById("exam-date-text");
+const finishedMessage = document.getElementById("finished-message");
 
-function iniciarCronometro() {
-    // Limpa o intervalo anterior se o usuário mudar de vestibular
-    clearInterval(intervaloCronometro);
+const daysEl = document.getElementById("days");
+const hoursEl = document.getElementById("hours");
+const minutesEl = document.getElementById("minutes");
+const secondsEl = document.getElementById("seconds");
 
-    const dados = dadosVestibulares[vestibularAtual];
-    const dataAlvo = new Date(dados.data).getTime();
+let countdownInterval;
 
-    // Atualiza os textos da tela com o vestibular selecionado
-    document.getElementById("nome-vestibular").innerText = dados.nome;
-    document.getElementById("info-estrutura").innerText = dados.estrutura;
-    document.getElementById("info-materias").innerText = dados.materias;
-    document.getElementById("info-dica").innerText = dados.dica;
+function updateCountdown() {
+    const selectedKey = selectElement.value;
+    const currentVestibular = vestibulares[selectedKey];
 
-    function atualizarTela() {
-        const agora = new Date().getTime();
-        const diferenca = dataAlvo - agora;
+    // Altera os títulos textuais na tela
+    titleElement.textContent = currentVestibular.name;
+    dateTextElement.textContent = currentVestibular.formatted;
 
-        if (diferenca <= 0) {
-            document.getElementById("nome-vestibular").innerText = `${dados.nome} - A prova já começou!`;
-            zerarCronometro();
-            clearInterval(intervaloCronometro);
+    const targetDate = new Date(currentVestibular.date).getTime();
+    
+    // Reseta intervalos antigos se o usuário mudar de opção
+    clearInterval(countdownInterval);
+
+    countdownInterval = setInterval(() => {
+        const now = new Date().getTime();
+        const difference = targetDate - now;
+
+        if (difference < 0) {
+            // Se a data já passou
+            daysEl.textContent = "00";
+            hoursEl.textContent = "00";
+            minutesEl.textContent = "00";
+            secondsEl.textContent = "00";
+            finishedMessage.classList.remove("finished-hidden");
+            clearInterval(countdownInterval);
             return;
         }
 
-        // Constantes de conversão exatas
-        const umSegundo = 1000;
-        const umMinuto = umSegundo * 60;
-        const umaHora = umMinuto * 60;
-        const umDia = umaHora * 24;
-        const umMes = umDia * 30.4368; // Média exata de dias por mês no ano
+        // Esconde a mensagem de expirado se o timer estiver ativo
+        finishedMessage.classList.add("finished-hidden");
 
-        // Cálculos matemáticos corrigidos
-        const meses = Math.floor(diferenca / umMes);
-        const dias = Math.floor((diferenca % umMes) / umDia);
-        const horas = Math.floor((diferenca % umDia) / umaHora);
-        const minutos = Math.floor((diferenca % umaHora) / umMinuto);
-        const segundos = Math.floor((diferenca % umMinuto) / umSegundo);
+        // Cálculos matemáticos de tempo
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
-        // Atualiza os elementos do seu HTML usando o padStart para ficar sempre com dois dígitos (ex: 05 em vez de 5)
-        document.getElementById("meses").innerText = String(meses).padStart(2, '0');
-        document.getElementById("dias").innerText = String(dias).padStart(2, '0');
-        document.getElementById("horas").innerText = String(horas).padStart(2, '0');
-        document.getElementById("minutos").innerText = String(minutos).padStart(2, '0');
-        document.getElementById("segundos").innerText = String(segundos).padStart(2, '0');
-    }
+        // Renderiza os valores na tela com o zero à esquerda se necessário
+        daysEl.textContent = String(days).padStart(2, '0');
+        hoursEl.textContent = String(hours).padStart(2, '0');
+        minutesEl.textContent = String(minutes).padStart(2, '0');
+        secondsEl.textContent = String(seconds).padStart(2, '0');
 
-    // Executa imediatamente e depois a cada segundo
-    atualizarTela();
-    intervaloCronometro = setInterval(atualizarTela, 1000);
+    }, 1000);
 }
 
-function zerarCronometro() {
-    document.getElementById("meses").innerText = "00";
-    document.getElementById("dias").innerText = "00";
-    document.getElementById("horas").innerText = "00";
-    document.getElementById("minutos").innerText = "00";
-    document.getElementById("segundos").innerText = "00";
-}
+// Escuta mudanças de seleção do usuário
+selectElement.addEventListener("change", updateCountdown);
 
-// Configuração do botão de busca/atualizar do seu HTML
-document.getElementById("btn-atualizar").addEventListener("click", () => {
-    const input = document.getElementById("vestibular-input").value.toLowerCase().trim();
-    
-    if (dadosVestibulares[input]) {
-        vestibularAtual = input;
-        iniciarCronometro();
-    } else {
-        alert("Vestibular não encontrado! Tente digitar 'enem' ou 'fuvest'.");
-    }
-});
-
-// Inicializa o site mostrando o ENEM por padrão
-iniciarCronometro();
+// Executa a primeira vez ao carregar a página
+updateCountdown();
