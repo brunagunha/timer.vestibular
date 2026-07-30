@@ -4,31 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contagem Regressiva - Vestibulares</title>
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class="container">
         <h1>⏰ Foco na Vaga!</h1>
-        <p class="subtitle">Selecione o vestibular para ver o tempo restante até a prova.</
-
+        <p class="subtitle">Selecione o vestibular para ver o tempo restante até a prova.</p>
             
         <div class="selector-wrapper">
             <label for="vestibular-select">Escolha o Vestibular:</label>
-            <select id="vestibular-select">
-                <option value="enem">ENEM (1º Dia)</option>
-                <option value="fuvest">FUVEST (1ª Fase)</option>
-                <option value="ufpr">UFPR</option>
-                <option value="uel">UEL</option>
-                <option value="uem">UEM (Verão)</option>
-                <option value="uepg">UEPG</option>
-                <option value="unicentro">UNICENTRO</option>
-                <option value="unioeste">UNIOESTE</option>
-                <option value="utfpr">UTFPR</option>
-                <option value="puc">PUC-PR</option>
-            </select>
+            <div class="select-custom">
+                <select id="vestibular-select">
+                    <option value="enem">ENEM (1º Dia)</option>
+                    <option value="fuvest">FUVEST (1ª Fase)</option>
+                    <option value="ufpr">UFPR</option>
+                    <option value="uel">UEL</option>
+                    <option value="uem">UEM (Verão)</option>
+                    <option value="uepg">UEPG</option>
+                    <option value="unicentro">UNICENTRO</option>
+                    <option value="unioeste">UNIOESTE</option>
+                    <option value="utfpr">UTFPR</option>
+                    <option value="puc">PUC-PR</option>
+                </select>
+            </div>
         </div>
-
 
         <div class="timer-display">
             <h2 id="vestibular-title">ENEM</h2>
