@@ -1,11 +1,4 @@
-:root {
-    --bg-color: #0f172a;
-    --card-bg: #1e293b;
-    --accent-color: #3b82f6;
-    --text-color: #f8fafc;
-    --text-secondary: #94a3b8;
-}
-
+/* Configurações Globais e Estética Clean */
 * {
     margin: 0;
     padding: 0;
@@ -14,159 +7,141 @@
 }
 
 body {
-    background-color: var(--bg-color);
-    color: var(--text-color);
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    color: #f8fafc;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
     padding: 20px;
-    position: relative; /* Necessário para o posicionamento da imagem de fundo */
-    overflow-x: hidden;
-}
-
-/* Camada da imagem de fundo com opacidade */
-body::before {
-    content: "";
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    /* 👉 LEIA AQUI: Substitua 'nome-da-sua-imagem.jpg' pelo nome do seu arquivo de imagem 
-       ou por uma URL da internet (ex: 'https://site.com/imagem.jpg') 
-    */
-    background-image: url('livros-fundo.jpeg'); 
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.2; /* Ajuste aqui: 0.0 (invisível) até 1.0 (totalmente visível) */
-    z-index: -1;  /* Garante que a imagem fique atrás de todo o conteúdo */
 }
 
 .container {
-    max-width: 800px;
-    width: 100%;
-    text-align: center;
-    background: var(--card-bg);
-    padding: 40px 20px;
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     border-radius: 16px;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-    position: relative; /* Garante que o container fique acima do background */
+    padding: 40px 30px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
 h1 {
-    font-size: 2.5rem;
-    margin-bottom: 10px;
+    font-size: 2.2rem;
+    margin-bottom: 8px;
+    color: #38bdf8;
 }
 
 .subtitle {
-    color: var(--text-secondary);
+    color: #94a3b8;
+    font-size: 1rem;
     margin-bottom: 30px;
 }
 
-/* Caixa de Busca */
-.search-box {
+/* Customização do Menu de Seleção */
+.selector-wrapper {
+    margin-bottom: 30px;
+    text-align: left;
     display: flex;
-    gap: 10px;
-    max-width: 500px;
-    margin: 0 auto 40px auto;
+    flex-direction: column;
+    gap: 8px;
 }
 
-input {
-    flex: 1;
-    padding: 12px 20px;
-    border-radius: 8px;
-    border: 2px solid #334155;
+.selector-wrapper label {
+    font-size: 0.9rem;
+    color: #94a3b8;
+    font-weight: 600;
+}
+
+select {
+    width: 100%;
+    padding: 12px;
     background: #0f172a;
-    color: white;
+    border: 2px solid #334155;
+    border-radius: 8px;
+    color: #f8fafc;
     font-size: 1rem;
     outline: none;
-    transition: 0.3s;
-}
-
-input:focus {
-    border-color: var(--accent-color);
-}
-
-button {
-    padding: 12px 24px;
-    background: var(--accent-color);
-    color: white;
-    border: none;
-    border-radius: 8px;
-    font-weight: bold;
     cursor: pointer;
-    transition: 0.3s;
+    transition: border-color 0.3s ease;
 }
 
-button:hover {
-    background: #2563eb;
-    transform: translateY(-2px);
+select:focus {
+    border-color: #38bdf8;
 }
 
-h2 {
-    margin-bottom: 20px;
+/* Painel de Exibição do Temporizador */
+.timer-display {
+    background: #0f172a;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #1e293b;
+}
+
+#vestibular-title {
     font-size: 1.8rem;
-    color: #60a5fa;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #f1f5f9;
 }
 
-/* Grid do Cronômetro */
+.exam-date {
+    font-size: 0.95rem;
+    color: #38bdf8;
+    margin-top: 5px;
+    margin-bottom: 25px;
+    font-weight: 500;
+}
+
+/* Boxes dos Números */
 .countdown-container {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-    gap: 15px;
-    margin-bottom: 40px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
 }
 
 .time-box {
-    background: #0f172a;
-    padding: 20px 10px;
-    border-radius: 12px;
-    border: 1px solid #334155;
+    background: #1e293b;
+    padding: 15px 5px;
+    border-radius: 8px;
+    border-bottom: 4px solid #38bdf8;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.15);
 }
 
 .time-box span {
-    font-size: 2.5rem;
-    font-weight: bold;
-    color: #f59e0b;
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
     display: block;
 }
 
 .time-box p {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
+    font-size: 0.75rem;
+    color: #94a3b8;
     text-transform: uppercase;
     margin-top: 5px;
+    letter-spacing: 0.5px;
 }
 
-/* Card de Informações */
-.info-card {
-    background: #0f172a;
-    border-left: 4px solid var(--accent-color);
-    padding: 20px;
-    border-radius: 0 12px 12px 0;
-    text-align: left;
+/* Mensagem de Término */
+#finished-message {
+    color: #f43f5e;
+    font-weight: bold;
+    margin-top: 20px;
 }
 
-.info-card h3 {
-    margin-bottom: 15px;
-    font-size: 1.2rem;
+.finished-hidden {
+    display: none;
 }
 
-.info-grid {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-.info-item strong {
-    color: #38bdf8;
-    display: block;
-    margin-bottom: 2px;
-}
-
-.info-item span {
-    color: #cbd5e1;
-    font-size: 0.95rem;
+/* Responsividade para Telas Menores */
+@media (max-width: 480px) {
+    .countdown-container {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .time-box span {
+        font-size: 1.7rem;
+    }
 }
